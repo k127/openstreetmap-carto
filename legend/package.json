@@ -1,0 +1,15 @@
+{
+  "name": "legend",
+  "version": "1.0.0",
+  "description": "Create a OSM XML file containing a map legend based on OSM Wiki Map Features for various zoom levels",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "k127@gmx.de",
+  "license": "ISC",
+  "devDependencies": {
+    "htmlparser": "^1.7.7",
+    "jsdom": "^9.4.1"
+  }
+}
