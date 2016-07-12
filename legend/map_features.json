@@ -1,5 +1,20 @@
 {
 	"categories": [{
+		"name": "Highway",
+		"sections": [{
+			"name": "Roads",
+			"items": [
+				{"types": ["way"], "tags": {"highway": "motorway"}},
+				{"types": ["way"], "tags": {"highway": "trunk"}},
+				{"types": ["way"], "tags": {"highway": "primary"}},
+				{"types": ["way"], "tags": {"highway": "secondary"}},
+				{"types": ["way"], "tags": {"highway": "tertiary"}},
+				{"types": ["way"], "tags": {"highway": "unclassified"}},
+				{"types": ["way"], "tags": {"highway": "residential"}},
+				{"types": ["way"], "tags": {"highway": "service"}}
+			]
+		}]
+	},{
 		"name": "Building",
 		"sections": [{
 			"name": "Accommodation",

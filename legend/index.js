@@ -2,18 +2,19 @@
 var cfg = {
 	debug: false,
 	offsLat: 49,  // The latitude where you want to place the top of the legend
-	offsLon: 12   // The longitude where you want to place the left of the legend
+	offsLon: 12,  // The longitude where you want to place the left of the legend
+	rowSpacing: 20
 };
 
 var builder = require('xmlbuilder');
 var mapFeatures = require('./map_features');
 
-var currentRow = cfg.offsLon;  // row [meters], will be decreased by 10m for each row
+var currentRow = cfg.offsLat;  // row [meters], will be decreased by 10m for each row
 
 var addRow = function(xml, type, tags) {
 	xml.com('title: ' + getTitle(tags));
 	addLabel(xml, tags);
-	addGeometry(xml);
+	addGeometry(xml, tags);
 	nextRow();
 };
 
@@ -24,11 +25,15 @@ var addLabel = function(xml, tags) {
 	addWay(xml,
 		currentRow, cfg.offsLon,
 		currentRow, getOffsetFromMeters(currentRow, cfg.offsLon, 0, 100).lon,
-		{name: getTitle(tags)});  // TODO adjust coordinates
+		{name: getTitle(tags), highway: 'road'});  // TODO adjust coordinates
 };
 
-var addGeometry = function(xml) {
-	debug('TODO addGeometry()');
+var addGeometry = function(xml, tags) {
+	var geomOffsLon = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 120).lon;
+	addWay(xml,
+		currentRow, geomOffsLon,
+		currentRow, getOffsetFromMeters(currentRow, geomOffsLon, 0, 100).lon,
+		tags);  // TODO adjust coordinates
 };
 
 var addWay = function(xml, lat1, lon1, lat2, lon2, tags) {
@@ -80,7 +85,7 @@ var getUniqueId = function() {
 };
 
 var nextRow = function() {
-	/* global */ currentRow = getOffsetFromMeters(currentRow, cfg.offsLon, 10, 0).lat;
+	/* global */ currentRow = getOffsetFromMeters(currentRow, cfg.offsLon, cfg.rowSpacing * -1, 0).lat;
 };
 
 /**
