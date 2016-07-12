@@ -1,0 +1,30 @@
+{
+	"categories": [{
+		"name": "Building",
+		"sections": [{
+			"name": "Accommodation",
+			"items": [
+				{"types": ["area"], "tags": {"building": "apartments"}},
+				{"types": ["area"], "tags": {"building": "farm"}},
+				{"types": ["area"], "tags": {"building": "hotel"}},
+				{"types": ["area"], "tags": {"building": "house"}},
+				{"types": ["area"], "tags": {"building": "detached"}},
+				{"types": ["area"], "tags": {"building": "residential"}},
+				{"types": ["area"], "tags": {"building": "dormitory"}},
+				{"types": ["area"], "tags": {"building": "terrace"}},
+				{"types": ["area"], "tags": {"building": "houseboat"}},
+				{"types": ["area"], "tags": {"building": "bungalow"}},
+				{"types": ["area"], "tags": {"building": "static_caravan"}}
+			]
+		},{
+			"name": "Commercial",
+			"items": [
+				{"types": ["area"], "tags": {"building": "commercial"}},
+				{"types": ["area"], "tags": {"building": "office"}},
+				{"types": ["area"], "tags": {"building": "industrial"}},
+				{"types": ["area"], "tags": {"building": "retail"}},
+				{"types": ["area"], "tags": {"building": "warehouse"}}
+			]
+		}]
+	}]
+}
