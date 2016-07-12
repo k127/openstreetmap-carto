@@ -132,6 +132,8 @@ for (var i in mapFeatures.categories) {
 	for (var j in category.sections) {
 		var section = category.sections[j];
 		debug(".. section:", section.name);  // TODO only if verbose
+		addLabel(xml, {category: category.name, section: section.name});
+		nextRow();
 		for (var k in section.items) {
 			var item  = section.items[k];
 			var type  = item.types[0];				// TODO add row for each type
