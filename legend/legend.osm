@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="k127/osm-legend">
+  <!-- title: building=apartments -->
+  <node id="105609" lat="12" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="117658" lat="12" lon="12.000918384181944" user="" uid="-1" visible="true" version="1"/>
+  <way id="115516" user="" uid="-1" visible="true" version="1">
+    <nd ref="105609"/>
+    <nd ref="117658"/>
+    <tag k="name" v="building=apartments"/>
+  </way>
+  <!-- title: building=farm -->
+  <node id="99275" lat="12.000089831528411" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="88304" lat="12.000089831528411" lon="12.000918384488003" user="" uid="-1" visible="true" version="1"/>
+  <way id="129890" user="" uid="-1" visible="true" version="1">
+    <nd ref="99275"/>
+    <nd ref="88304"/>
+    <tag k="name" v="building=farm"/>
+  </way>
+  <!-- title: building=hotel -->
+  <node id="125075" lat="12.000179663056823" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="91730" lat="12.000179663056823" lon="12.000918384794065" user="" uid="-1" visible="true" version="1"/>
+  <way id="107320" user="" uid="-1" visible="true" version="1">
+    <nd ref="125075"/>
+    <nd ref="91730"/>
+    <tag k="name" v="building=hotel"/>
+  </way>
+  <!-- title: building=house -->
+  <node id="101942" lat="12.000269494585234" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="68635" lat="12.000269494585234" lon="12.000918385100132" user="" uid="-1" visible="true" version="1"/>
+  <way id="113850" user="" uid="-1" visible="true" version="1">
+    <nd ref="101942"/>
+    <nd ref="68635"/>
+    <tag k="name" v="building=house"/>
+  </way>
+  <!-- title: building=detached -->
+  <node id="128832" lat="12.000359326113646" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="127339" lat="12.000359326113646" lon="12.000918385406198" user="" uid="-1" visible="true" version="1"/>
+  <way id="82431" user="" uid="-1" visible="true" version="1">
+    <nd ref="128832"/>
+    <nd ref="127339"/>
+    <tag k="name" v="building=detached"/>
+  </way>
+  <!-- title: building=residential -->
+  <node id="88061" lat="12.000449157642057" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="69342" lat="12.000449157642057" lon="12.000918385712268" user="" uid="-1" visible="true" version="1"/>
+  <way id="77721" user="" uid="-1" visible="true" version="1">
+    <nd ref="88061"/>
+    <nd ref="69342"/>
+    <tag k="name" v="building=residential"/>
+  </way>
+  <!-- title: building=dormitory -->
+  <node id="85461" lat="12.000538989170469" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="113822" lat="12.000538989170469" lon="12.000918386018341" user="" uid="-1" visible="true" version="1"/>
+  <way id="87373" user="" uid="-1" visible="true" version="1">
+    <nd ref="85461"/>
+    <nd ref="113822"/>
+    <tag k="name" v="building=dormitory"/>
+  </way>
+  <!-- title: building=terrace -->
+  <node id="125178" lat="12.00062882069888" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="102115" lat="12.00062882069888" lon="12.000918386324416" user="" uid="-1" visible="true" version="1"/>
+  <way id="112546" user="" uid="-1" visible="true" version="1">
+    <nd ref="125178"/>
+    <nd ref="102115"/>
+    <tag k="name" v="building=terrace"/>
+  </way>
+  <!-- title: building=houseboat -->
+  <node id="88811" lat="12.000718652227292" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="99711" lat="12.000718652227292" lon="12.000918386630493" user="" uid="-1" visible="true" version="1"/>
+  <way id="77717" user="" uid="-1" visible="true" version="1">
+    <nd ref="88811"/>
+    <nd ref="99711"/>
+    <tag k="name" v="building=houseboat"/>
+  </way>
+  <!-- title: building=bungalow -->
+  <node id="87232" lat="12.000808483755703" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="128919" lat="12.000808483755703" lon="12.000918386936574" user="" uid="-1" visible="true" version="1"/>
+  <way id="115762" user="" uid="-1" visible="true" version="1">
+    <nd ref="87232"/>
+    <nd ref="128919"/>
+    <tag k="name" v="building=bungalow"/>
+  </way>
+  <!-- title: building=static_caravan -->
+  <node id="81305" lat="12.000898315284115" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="99256" lat="12.000898315284115" lon="12.000918387242656" user="" uid="-1" visible="true" version="1"/>
+  <way id="129538" user="" uid="-1" visible="true" version="1">
+    <nd ref="81305"/>
+    <nd ref="99256"/>
+    <tag k="name" v="building=static_caravan"/>
+  </way>
+  <!-- title: building=commercial -->
+  <node id="72984" lat="12.000988146812526" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="87320" lat="12.000988146812526" lon="12.00091838754874" user="" uid="-1" visible="true" version="1"/>
+  <way id="75857" user="" uid="-1" visible="true" version="1">
+    <nd ref="72984"/>
+    <nd ref="87320"/>
+    <tag k="name" v="building=commercial"/>
+  </way>
+  <!-- title: building=office -->
+  <node id="102455" lat="12.001077978340938" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="68793" lat="12.001077978340938" lon="12.000918387854828" user="" uid="-1" visible="true" version="1"/>
+  <way id="79147" user="" uid="-1" visible="true" version="1">
+    <nd ref="102455"/>
+    <nd ref="68793"/>
+    <tag k="name" v="building=office"/>
+  </way>
+  <!-- title: building=industrial -->
+  <node id="105978" lat="12.001167809869349" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="85004" lat="12.001167809869349" lon="12.000918388160917" user="" uid="-1" visible="true" version="1"/>
+  <way id="73886" user="" uid="-1" visible="true" version="1">
+    <nd ref="105978"/>
+    <nd ref="85004"/>
+    <tag k="name" v="building=industrial"/>
+  </way>
+  <!-- title: building=retail -->
+  <node id="85200" lat="12.00125764139776" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="125529" lat="12.00125764139776" lon="12.00091838846701" user="" uid="-1" visible="true" version="1"/>
+  <way id="73055" user="" uid="-1" visible="true" version="1">
+    <nd ref="85200"/>
+    <nd ref="125529"/>
+    <tag k="name" v="building=retail"/>
+  </way>
+  <!-- title: building=warehouse -->
+  <node id="121163" lat="12.001347472926172" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="125006" lat="12.001347472926172" lon="12.000918388773105" user="" uid="-1" visible="true" version="1"/>
+  <way id="90443" user="" uid="-1" visible="true" version="1">
+    <nd ref="121163"/>
+    <nd ref="125006"/>
+    <tag k="name" v="building=warehouse"/>
+  </way>
+</osm>
