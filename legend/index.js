@@ -37,15 +37,15 @@ var addGeometry = function(xml, tags) {
 };
 
 var addWay = function(xml, lat1, lon1, lat2, lon2, tags) {
-	var nid1 = getUniqueId();
-	var nid2 = getUniqueId();
+	var nid1 = (lat1 + '++' + lon1).hashCode();
+	var nid2 = (lat2 + '++' + lon2).hashCode();
 	addNode(xml, nid1, lat1, lon1);
 	addNode(xml, nid2, lat2, lon2);
 	var way = xml.ele('way', {  /* <way id="26" user="Masch" uid="55988" visible="true" version="5" changeset="4142606" timestamp="2010-03-16T11:47:08Z">
 			<nd ref="292403538"/><nd ref="298884289"/><nd ref="261728686"/>
 			<tag k="highway" v="unclassified"/><tag k="name" v="Pastower Straße"/>
 	 		</way> */
-		id: getUniqueId(),
+		id: (lat1 + '++' + lon1 + '++' + lat2 + '++' + lon2).hashCode(),
 		user: '',		// TODO adjust attrs
 		uid: -1,		// TODO adjust attrs
 		visible: true,
@@ -80,8 +80,23 @@ var debug = function(msg) {
 	if (cfg.debug) console.log(msg);
 };
 
-var getUniqueId = function() {
+/* var getUniqueId = function() {
 	return Math.floor((1 + Math.random()) * 0x10000);
+}; */
+
+/**
+ * src: http://stackoverflow.com/a/7616484/211514
+ */
+String.prototype.hashCode = function() {
+  var hash = 0, i, chr, len;
+  if (this.length === 0) return hash;
+  for (i = 0, len = this.length; i < len; i++) {
+    chr   = this.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  hash = hash >>> 0; // unsign the int
+  return hash;
 };
 
 var nextRow = function() {
@@ -142,40 +157,5 @@ for (var i in mapFeatures.categories) {
 		}
 	}
 }
-
-/*
-
- <node id="298884269" lat="54.0901746" lon="12.2482632" user="SvenHRO" uid="46882" visible="true" version="1" changeset="676636" timestamp="2008-09-21T21:37:45Z"/>
- <node id="261728686" lat="54.0906309" lon="12.2441924" user="PikoWinter" uid="36744" visible="true" version="1" changeset="323878" timestamp="2008-05-03T13:39:23Z"/>
- <node id="1831881213" version="1" changeset="12370172" lat="54.0900666" lon="12.2539381" user="lafkor" uid="75625" visible="true" timestamp="2012-07-20T09:43:19Z">
-  <tag k="name" v="Neu Broderstorf"/>
-  <tag k="traffic_sign" v="city_limit"/>
- </node>
- ...
- <node id="298884272" lat="54.0901447" lon="12.2516513" user="SvenHRO" uid="46882" visible="true" version="1" changeset="676636" timestamp="2008-09-21T21:37:45Z"/>
- <way id="26659127" user="Masch" uid="55988" visible="true" version="5" changeset="4142606" timestamp="2010-03-16T11:47:08Z">
-  <nd ref="292403538"/>
-  <nd ref="298884289"/>
-  ...
-  <nd ref="261728686"/>
-  <tag k="highway" v="unclassified"/>
-  <tag k="name" v="Pastower Straße"/>
- </way>
- <relation id="56688" user="kmvar" uid="56190" visible="true" version="28" changeset="6947637" timestamp="2011-01-12T14:23:49Z">
-  <member type="node" ref="294942404" role=""/>
-  ...
-  <member type="node" ref="364933006" role=""/>
-  <member type="way" ref="4579143" role=""/>
-  ...
-  <member type="node" ref="249673494" role=""/>
-  <tag k="name" v="Küstenbus Linie 123"/>
-  <tag k="network" v="VVW"/>
-  <tag k="operator" v="Regionalverkehr Küste"/>
-  <tag k="ref" v="123"/>
-  <tag k="route" v="bus"/>
-  <tag k="type" v="route"/>
- </relation>
- ...
- */
 
 console.log(xml.end({ pretty: true}));
