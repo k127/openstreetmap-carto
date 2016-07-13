@@ -1,5 +1,13 @@
 # Create A Map Legend OSM XML
 
+## Goals
+
+* Map legend should display all osm wiki features…
+* …for each zoom level, …
+* …`map_features.json` should be automatically created from wiki page.
+* The map legend should also contain some complex situations (which have yet to be suggested)
+
+
 ## Prerequisities
 
 * node.js
