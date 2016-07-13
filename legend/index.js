@@ -11,10 +11,10 @@ var mapFeatures = require('./map_features');
 
 var currentRow = cfg.offsLat;  // row [meters], will be decreased by 10m for each row
 
-var addRow = function(xml, type, tags) {
+var addRow = function(xml, types, tags) {
 	xml.com('title: ' + getTitle(tags));
 	addLabel(xml, tags);
-	addGeometry(xml, tags);
+	addGeometries(xml, types, tags);
 	nextRow();
 };
 
@@ -22,38 +22,59 @@ var addRow = function(xml, type, tags) {
  * Add a way with 2 nodes with a name tag
  */
 var addLabel = function(xml, tags) {
-	addWay(xml,
-		currentRow, cfg.offsLon,
-		currentRow, getOffsetFromMeters(currentRow, cfg.offsLon, 0, 100).lon,
-		{name: getTitle(tags), highway: 'road'});  // TODO adjust coordinates
+	addWay(xml, [
+		{lat: currentRow, lon: cfg.offsLon},
+		{lat: currentRow, lon: getOffsetFromMeters(currentRow, cfg.offsLon, 0, 100).lon}
+	], {name: getTitle(tags), highway: 'road'});
 };
 
-var addGeometry = function(xml, tags) {
-	var geomOffsLon = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 120).lon;
-	addWay(xml,
-		currentRow, geomOffsLon,
-		currentRow, getOffsetFromMeters(currentRow, geomOffsLon, 0, 100).lon,
-		tags);  // TODO adjust coordinates
+var addGeometries = function(xml, types, tags) {
+	var nodeGeomOffsLon = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 120).lon;  // TODO put to cfg
+	var wayGeomOffsLon  = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 140).lon;  // TODO put to cfg
+	var areaGeomOffsLon = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 220).lon;  // TODO put to cfg
+	if (types.indexOf('node') !== -1) {
+		addNode(xml, (currentRow + '++' + geomOffsLon).hashCode(), currentRow, nodeGeomOffsLon);
+	} else if (types.indexOf('way') !== -1) {
+		addWay(xml, [
+			{lat: currentRow, lon: wayGeomOffsLon},
+			{lat: currentRow, lon: getOffsetFromMeters(currentRow, wayGeomOffsLon, 0, 60).lon}
+		], tags);
+	} else if (types.indexOf('area') !== -1) {
+		var x1 = areaGeomOffsLon;
+		var x2 = getOffsetFromMeters(currentRow, areaGeomOffsLon, 0, 15).lon;
+		var y1 = getOffsetFromMeters(currentRow, areaGeomOffsLon, -5, 0).lat;
+		var y2 = getOffsetFromMeters(currentRow, areaGeomOffsLon, 5, 0).lat;
+		addWay(xml, [
+			{lat: y1, lon: x1},
+			{lat: y2, lon: x1},
+			{lat: y2, lon: x2},
+			{lat: y1, lon: x2}
+		], tags, true);
+	}
 };
 
-var addWay = function(xml, lat1, lon1, lat2, lon2, tags) {
-	var nid1 = (lat1 + '++' + lon1).hashCode();
-	var nid2 = (lat2 + '++' + lon2).hashCode();
-	addNode(xml, nid1, lat1, lon1);
-	addNode(xml, nid2, lat2, lon2);
+var addWay = function(xml, nodes, tags, closed) {
+	//lat1, lon1, lat2, lon2
+	for (var i in nodes) {
+		var node = nodes[i];
+		node.id = (node.lat + '++' + node.lon).hashCode();
+		addNode(xml, node.id, node.lat, node.lon);
+	}
 	var way = xml.ele('way', {  /* <way id="26" user="Masch" uid="55988" visible="true" version="5" changeset="4142606" timestamp="2010-03-16T11:47:08Z">
 			<nd ref="292403538"/><nd ref="298884289"/><nd ref="261728686"/>
 			<tag k="highway" v="unclassified"/><tag k="name" v="Pastower Straße"/>
 	 		</way> */
-		id: (lat1 + '++' + lon1 + '++' + lat2 + '++' + lon2).hashCode(),
+		id: (JSON.stringify(nodes)).hashCode(),
 		user: '',		// TODO adjust attrs
 		uid: -1,		// TODO adjust attrs
 		visible: true,
 		version: 1,
 		//changeset: -1,	// TODO adjust attrs
 		//timestamp: ''	// TODO adjust attrs
-	}).ele('nd', {ref: nid1}).up().ele('nd', {ref: nid2}).up();
-	for (var k in tags) way.ele('tag', {k: k, v: tags[k]});
+	});
+	for (var j in nodes) way.ele('nd',  {ref: nodes[j].id});
+	if (closed)          way.ele('nd',  {ref: nodes[0].id});
+	for (var k in tags)  way.ele('tag', {k: k, v: tags[k]});
 };
 
 var addNode = function(xml, id, lat, lon) {
@@ -151,9 +172,8 @@ for (var i in mapFeatures.categories) {
 		nextRow();
 		for (var k in section.items) {
 			var item  = section.items[k];
-			var type  = item.types[0];				// TODO add row for each type
 			debug("... item:", item.tags);  		// TODO only if verbose
-			addRow(xml, type, item.tags);
+			addRow(xml, item.types, item.tags);
 		}
 	}
 }
