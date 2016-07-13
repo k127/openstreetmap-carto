@@ -41,5 +41,27 @@
 				{"types": ["area"], "tags": {"building": "warehouse"}}
 			]
 		}]
+	},{
+		"name": "Landuse",
+		"sections": [{
+			"name": "",
+			"items": [
+				{"types": ["node", "area"],	"tags": {"landuse": "allotments"}},
+				{"types": ["node", "area"],	"tags": {"landuse": "basin"}},
+				{"types": ["node", "area"],	"tags": {"landuse": "brownfield"}},
+				{"types": ["area"],			"tags": {"landuse": "cemetery"}}
+			]
+		}]
+	},{
+		"name": "Man Made",
+		"sections": [{
+			"name": "",
+			"items": [
+				{"types": ["node", "area"],	"tags": {"man_made": "adit"}},
+				{"types": ["node"],			"tags": {"man_made": "beacon"}},
+				{"types": ["way", "area"],	"tags": {"man_made": "breakwater"}},
+				{"types": ["area"],			"tags": {"man_made": "bridge"}}
+			]
+		}]
 	}]
 }

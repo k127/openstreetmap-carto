@@ -33,13 +33,15 @@ var addGeometries = function(xml, types, tags) {
 	var wayGeomOffsLon  = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 140).lon;  // TODO put to cfg
 	var areaGeomOffsLon = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 220).lon;  // TODO put to cfg
 	if (types.indexOf('node') !== -1) {
-		addNode(xml, (currentRow + '++' + geomOffsLon).hashCode(), currentRow, nodeGeomOffsLon);
-	} else if (types.indexOf('way') !== -1) {
+		addNode(xml, (currentRow + '++' + nodeGeomOffsLon).hashCode(), currentRow, nodeGeomOffsLon, tags);
+	}
+	if (types.indexOf('way') !== -1) {
 		addWay(xml, [
 			{lat: currentRow, lon: wayGeomOffsLon},
 			{lat: currentRow, lon: getOffsetFromMeters(currentRow, wayGeomOffsLon, 0, 60).lon}
 		], tags);
-	} else if (types.indexOf('area') !== -1) {
+	}
+	if (types.indexOf('area') !== -1) {
 		var x1 = areaGeomOffsLon;
 		var x2 = getOffsetFromMeters(currentRow, areaGeomOffsLon, 0, 15).lon;
 		var y1 = getOffsetFromMeters(currentRow, areaGeomOffsLon, -5, 0).lat;
@@ -54,16 +56,12 @@ var addGeometries = function(xml, types, tags) {
 };
 
 var addWay = function(xml, nodes, tags, closed) {
-	//lat1, lon1, lat2, lon2
 	for (var i in nodes) {
 		var node = nodes[i];
 		node.id = (node.lat + '++' + node.lon).hashCode();
 		addNode(xml, node.id, node.lat, node.lon);
 	}
-	var way = xml.ele('way', {  /* <way id="26" user="Masch" uid="55988" visible="true" version="5" changeset="4142606" timestamp="2010-03-16T11:47:08Z">
-			<nd ref="292403538"/><nd ref="298884289"/><nd ref="261728686"/>
-			<tag k="highway" v="unclassified"/><tag k="name" v="Pastower Straße"/>
-	 		</way> */
+	var way = xml.ele('way', {
 		id: (JSON.stringify(nodes)).hashCode(),
 		user: '',		// TODO adjust attrs
 		uid: -1,		// TODO adjust attrs
@@ -77,8 +75,8 @@ var addWay = function(xml, nodes, tags, closed) {
 	for (var k in tags)  way.ele('tag', {k: k, v: tags[k]});
 };
 
-var addNode = function(xml, id, lat, lon) {
-	xml.ele('node', {  // <node id="298884269" lat="54.0901746" lon="12.2482632" user="SvenHRO" uid="46882" visible="true" version="1" changeset="676636" timestamp="2008-09-21T21:37:45Z"/>
+var addNode = function(xml, id, lat, lon, tags) {
+	var node = xml.ele('node', {
 		id: id,
 		lat: lat,
 		lon: lon,
@@ -89,6 +87,8 @@ var addNode = function(xml, id, lat, lon) {
 		//changeset: -1,	// TODO adjust attrs
 		//timestamp: ''	// TODO adjust attrs
 	});
+	if (tags !== "undefined" || tags.length !== 0)
+		for (var k in tags) node.ele('tag', {k: k, v: tags[k]});
 };
 
 var getTitle = function(tags) {
@@ -168,7 +168,9 @@ for (var i in mapFeatures.categories) {
 	for (var j in category.sections) {
 		var section = category.sections[j];
 		debug(".. section:", section.name);  // TODO only if verbose
-		addLabel(xml, {category: category.name, section: section.name});
+		var tags = {category: category.name};
+		if (section.name !== "") tags.section = section.name;
+		addLabel(xml, tags);
 		nextRow();
 		for (var k in section.items) {
 			var item  = section.items[k];

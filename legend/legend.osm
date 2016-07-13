@@ -488,4 +488,198 @@
     <nd ref="2950679214"/>
     <tag k="building" v="warehouse"/>
   </way>
+  <node id="209861156" lat="48.995149097465685" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="2223168355" lat="48.995149097465685" lon="12.001369126503423" user="" uid="-1" visible="true" version="1"/>
+  <way id="1201535054" user="" uid="-1" visible="true" version="1">
+    <nd ref="209861156"/>
+    <nd ref="2223168355"/>
+    <tag k="name" v="category=Landuse"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <!-- title: landuse=allotments -->
+  <node id="3799872664" lat="48.99496943440886" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="93912921" lat="48.99496943440886" lon="12.001369121565547" user="" uid="-1" visible="true" version="1"/>
+  <way id="1264647168" user="" uid="-1" visible="true" version="1">
+    <nd ref="3799872664"/>
+    <nd ref="93912921"/>
+    <tag k="name" v="landuse=allotments"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="2408526655" lat="48.99496943440886" lon="12.001642945878656" user="" uid="-1" visible="true" version="1">
+    <tag k="landuse" v="allotments"/>
+  </node>
+  <node id="3862084081" lat="48.99492451864465" lon="12.003012067444203" user="" uid="-1" visible="true" version="1"/>
+  <node id="205202831" lat="48.995014350173065" lon="12.003012067444203" user="" uid="-1" visible="true" version="1"/>
+  <node id="2487589702" lat="48.995014350173065" lon="12.003217435679035" user="" uid="-1" visible="true" version="1"/>
+  <node id="1849503656" lat="48.99492451864465" lon="12.003217435679035" user="" uid="-1" visible="true" version="1"/>
+  <way id="2873210152" user="" uid="-1" visible="true" version="1">
+    <nd ref="3862084081"/>
+    <nd ref="205202831"/>
+    <nd ref="2487589702"/>
+    <nd ref="1849503656"/>
+    <nd ref="3862084081"/>
+    <tag k="landuse" v="allotments"/>
+  </way>
+  <!-- title: landuse=basin -->
+  <node id="2822282609" lat="48.99478977135203" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="763153474" lat="48.99478977135203" lon="12.00136911662772" user="" uid="-1" visible="true" version="1"/>
+  <way id="1530282372" user="" uid="-1" visible="true" version="1">
+    <nd ref="2822282609"/>
+    <nd ref="763153474"/>
+    <tag k="name" v="landuse=basin"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="3611664150" lat="48.99478977135203" lon="12.001642939953262" user="" uid="-1" visible="true" version="1">
+    <tag k="landuse" v="basin"/>
+  </node>
+  <node id="2345277566" lat="48.994744855587825" lon="12.003012056580982" user="" uid="-1" visible="true" version="1"/>
+  <node id="2617705470" lat="48.99483468711624" lon="12.003012056580982" user="" uid="-1" visible="true" version="1"/>
+  <node id="401020895" lat="48.99483468711624" lon="12.003217424075139" user="" uid="-1" visible="true" version="1"/>
+  <node id="128592991" lat="48.994744855587825" lon="12.003217424075139" user="" uid="-1" visible="true" version="1"/>
+  <way id="159556597" user="" uid="-1" visible="true" version="1">
+    <nd ref="2345277566"/>
+    <nd ref="2617705470"/>
+    <nd ref="401020895"/>
+    <nd ref="128592991"/>
+    <nd ref="2345277566"/>
+    <tag k="landuse" v="basin"/>
+  </way>
+  <!-- title: landuse=brownfield -->
+  <node id="1450638808" lat="48.994610108295205" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="331989973" lat="48.994610108295205" lon="12.001369111689941" user="" uid="-1" visible="true" version="1"/>
+  <way id="1784283810" user="" uid="-1" visible="true" version="1">
+    <nd ref="1450638808"/>
+    <nd ref="331989973"/>
+    <tag k="name" v="landuse=brownfield"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="1572240750" lat="48.994610108295205" lon="12.00164293402793" user="" uid="-1" visible="true" version="1">
+    <tag k="landuse" v="brownfield"/>
+  </node>
+  <node id="3202799895" lat="48.994565192531" lon="12.003012045717869" user="" uid="-1" visible="true" version="1"/>
+  <node id="846480207" lat="48.99465502405941" lon="12.003012045717869" user="" uid="-1" visible="true" version="1"/>
+  <node id="3115804451" lat="48.99465502405941" lon="12.00321741247136" user="" uid="-1" visible="true" version="1"/>
+  <node id="2637625435" lat="48.994565192531" lon="12.00321741247136" user="" uid="-1" visible="true" version="1"/>
+  <way id="1881977884" user="" uid="-1" visible="true" version="1">
+    <nd ref="3202799895"/>
+    <nd ref="846480207"/>
+    <nd ref="3115804451"/>
+    <nd ref="2637625435"/>
+    <nd ref="3202799895"/>
+    <tag k="landuse" v="brownfield"/>
+  </way>
+  <!-- title: landuse=cemetery -->
+  <node id="2833025615" lat="48.99443044523838" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="45270673" lat="48.99443044523838" lon="12.001369106752211" user="" uid="-1" visible="true" version="1"/>
+  <way id="4261956137" user="" uid="-1" visible="true" version="1">
+    <nd ref="2833025615"/>
+    <nd ref="45270673"/>
+    <tag k="name" v="landuse=cemetery"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="1711867878" lat="48.99438552947417" lon="12.003012034854864" user="" uid="-1" visible="true" version="1"/>
+  <node id="2036507436" lat="48.994475361002586" lon="12.003012034854864" user="" uid="-1" visible="true" version="1"/>
+  <node id="2484722019" lat="48.994475361002586" lon="12.003217400867696" user="" uid="-1" visible="true" version="1"/>
+  <node id="2160082461" lat="48.99438552947417" lon="12.003217400867696" user="" uid="-1" visible="true" version="1"/>
+  <way id="4135444227" user="" uid="-1" visible="true" version="1">
+    <nd ref="1711867878"/>
+    <nd ref="2036507436"/>
+    <nd ref="2484722019"/>
+    <nd ref="2160082461"/>
+    <nd ref="1711867878"/>
+    <tag k="landuse" v="cemetery"/>
+  </way>
+  <node id="1254223389" lat="48.99425078218155" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="3990341341" lat="48.99425078218155" lon="12.00136910181453" user="" uid="-1" visible="true" version="1"/>
+  <way id="903799454" user="" uid="-1" visible="true" version="1">
+    <nd ref="1254223389"/>
+    <nd ref="3990341341"/>
+    <tag k="name" v="category=Man Made"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <!-- title: man_made=adit -->
+  <node id="1217508322" lat="48.994071119124726" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="855211932" lat="48.994071119124726" lon="12.001369096876898" user="" uid="-1" visible="true" version="1"/>
+  <way id="179893297" user="" uid="-1" visible="true" version="1">
+    <nd ref="1217508322"/>
+    <nd ref="855211932"/>
+    <tag k="name" v="man_made=adit"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="1598441331" lat="48.994071119124726" lon="12.001642916252278" user="" uid="-1" visible="true" version="1">
+    <tag k="man_made" v="adit"/>
+  </node>
+  <node id="499426688" lat="48.99402620336052" lon="12.003012013129178" user="" uid="-1" visible="true" version="1"/>
+  <node id="56394126" lat="48.99411603488893" lon="12.003012013129178" user="" uid="-1" visible="true" version="1"/>
+  <node id="3768115383" lat="48.99411603488893" lon="12.003217377660713" user="" uid="-1" visible="true" version="1"/>
+  <node id="4211147945" lat="48.99402620336052" lon="12.003217377660713" user="" uid="-1" visible="true" version="1"/>
+  <way id="1802851009" user="" uid="-1" visible="true" version="1">
+    <nd ref="499426688"/>
+    <nd ref="56394126"/>
+    <nd ref="3768115383"/>
+    <nd ref="4211147945"/>
+    <nd ref="499426688"/>
+    <tag k="man_made" v="adit"/>
+  </way>
+  <!-- title: man_made=beacon -->
+  <node id="2332216151" lat="48.9938914560679" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="2365434054" lat="48.9938914560679" lon="12.001369091939317" user="" uid="-1" visible="true" version="1"/>
+  <way id="1412040587" user="" uid="-1" visible="true" version="1">
+    <nd ref="2332216151"/>
+    <nd ref="2365434054"/>
+    <tag k="name" v="man_made=beacon"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="1734250145" lat="48.9938914560679" lon="12.00164291032718" user="" uid="-1" visible="true" version="1">
+    <tag k="man_made" v="beacon"/>
+  </node>
+  <!-- title: man_made=breakwater -->
+  <node id="2799333941" lat="48.99371179301107" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="4195521299" lat="48.99371179301107" lon="12.001369087001784" user="" uid="-1" visible="true" version="1"/>
+  <way id="1720973369" user="" uid="-1" visible="true" version="1">
+    <nd ref="2799333941"/>
+    <nd ref="4195521299"/>
+    <tag k="name" v="man_made=breakwater"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="3519178919" lat="48.99371179301107" lon="12.001916721802496" user="" uid="-1" visible="true" version="1"/>
+  <node id="3793098509" lat="48.99371179301107" lon="12.002738174003566" user="" uid="-1" visible="true" version="1"/>
+  <way id="1690937798" user="" uid="-1" visible="true" version="1">
+    <nd ref="3519178919"/>
+    <nd ref="3793098509"/>
+    <tag k="man_made" v="breakwater"/>
+  </way>
+  <node id="4036108601" lat="48.993666877246866" lon="12.003011991403923" user="" uid="-1" visible="true" version="1"/>
+  <node id="996547957" lat="48.99375670877528" lon="12.003011991403923" user="" uid="-1" visible="true" version="1"/>
+  <node id="2321301474" lat="48.99375670877528" lon="12.003217354454192" user="" uid="-1" visible="true" version="1"/>
+  <node id="1065894822" lat="48.993666877246866" lon="12.003217354454192" user="" uid="-1" visible="true" version="1"/>
+  <way id="3284586564" user="" uid="-1" visible="true" version="1">
+    <nd ref="4036108601"/>
+    <nd ref="996547957"/>
+    <nd ref="2321301474"/>
+    <nd ref="1065894822"/>
+    <nd ref="4036108601"/>
+    <tag k="man_made" v="breakwater"/>
+  </way>
+  <!-- title: man_made=bridge -->
+  <node id="2526865711" lat="48.99353212995425" lon="12" user="" uid="-1" visible="true" version="1"/>
+  <node id="803374410" lat="48.99353212995425" lon="12.001369082064299" user="" uid="-1" visible="true" version="1"/>
+  <way id="3111608382" user="" uid="-1" visible="true" version="1">
+    <nd ref="2526865711"/>
+    <nd ref="803374410"/>
+    <tag k="name" v="man_made=bridge"/>
+    <tag k="highway" v="road"/>
+  </way>
+  <node id="930555148" lat="48.99348721419004" lon="12.003011980541457" user="" uid="-1" visible="true" version="1"/>
+  <node id="3375348069" lat="48.99357704571845" lon="12.003011980541457" user="" uid="-1" visible="true" version="1"/>
+  <node id="3894765912" lat="48.99357704571845" lon="12.003217342851102" user="" uid="-1" visible="true" version="1"/>
+  <node id="1449972991" lat="48.99348721419004" lon="12.003217342851102" user="" uid="-1" visible="true" version="1"/>
+  <way id="2066338459" user="" uid="-1" visible="true" version="1">
+    <nd ref="930555148"/>
+    <nd ref="3375348069"/>
+    <nd ref="3894765912"/>
+    <nd ref="1449972991"/>
+    <nd ref="930555148"/>
+    <tag k="man_made" v="bridge"/>
+  </way>
 </osm>
