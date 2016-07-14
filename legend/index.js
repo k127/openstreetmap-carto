@@ -6,10 +6,15 @@ var cfg = {
 	rowSpacing: 20
 };
 
+var instance = {
+	zoom: -1,
+	row: -1.0,
+	lon: -1.0,
+	scale: -1.0
+};
+
 var builder = require('xmlbuilder');
 var mapFeatures = require('./map_features');
-
-var currentRow = cfg.offsLat;  // row [meters], will be decreased by 10m for each row
 
 var addRow = function(xml, types, tags) {
 	xml.com('title: ' + getTitle(tags));
@@ -22,30 +27,34 @@ var addRow = function(xml, types, tags) {
  * Add a way with 2 nodes with a name tag
  */
 var addLabel = function(xml, tags) {
+	/* global */ instance;
+	var width = 100;
+	// TODO: width = ...instance.zoom...
+	xml.com('label');
 	addWay(xml, [
-		{lat: currentRow, lon: cfg.offsLon},
-		{lat: currentRow, lon: getOffsetFromMeters(currentRow, cfg.offsLon, 0, 100).lon}
+		{lat: instance.row, lon: instance.lon},
+		{lat: instance.row, lon: getZoomedOffsetFromMeters(instance.row, instance.lon, 0, width).lon}
 	], {name: getTitle(tags), highway: 'road'});
 };
 
 var addGeometries = function(xml, types, tags) {
-	var nodeGeomOffsLon = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 120).lon;  // TODO put to cfg
-	var wayGeomOffsLon  = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 140).lon;  // TODO put to cfg
-	var areaGeomOffsLon = getOffsetFromMeters(currentRow, cfg.offsLon, 0, 220).lon;  // TODO put to cfg
+	var nodeGeomOffsLon = getZoomedOffsetFromMeters(instance.row, instance.lon, 0, 120).lon;  // TODO put to cfg
+	var wayGeomOffsLon  = getZoomedOffsetFromMeters(instance.row, instance.lon, 0, 140).lon;  // TODO put to cfg
+	var areaGeomOffsLon = getZoomedOffsetFromMeters(instance.row, instance.lon, 0, 220).lon;  // TODO put to cfg
 	if (types.indexOf('node') !== -1) {
-		addNode(xml, (currentRow + '++' + nodeGeomOffsLon).hashCode(), currentRow, nodeGeomOffsLon, tags);
+		addNode(xml, (instance.row + '++' + nodeGeomOffsLon).hashCode(), instance.row, nodeGeomOffsLon, tags);
 	}
 	if (types.indexOf('way') !== -1) {
 		addWay(xml, [
-			{lat: currentRow, lon: wayGeomOffsLon},
-			{lat: currentRow, lon: getOffsetFromMeters(currentRow, wayGeomOffsLon, 0, 60).lon}
+			{lat: instance.row, lon: wayGeomOffsLon},
+			{lat: instance.row, lon: getZoomedOffsetFromMeters(instance.row, wayGeomOffsLon, 0, 60).lon}
 		], tags);
 	}
 	if (types.indexOf('area') !== -1) {
 		var x1 = areaGeomOffsLon;
-		var x2 = getOffsetFromMeters(currentRow, areaGeomOffsLon, 0, 15).lon;
-		var y1 = getOffsetFromMeters(currentRow, areaGeomOffsLon, -5, 0).lat;
-		var y2 = getOffsetFromMeters(currentRow, areaGeomOffsLon, 5, 0).lat;
+		var x2 = getZoomedOffsetFromMeters(instance.row, areaGeomOffsLon, 0, 15).lon;
+		var y1 = getZoomedOffsetFromMeters(instance.row, areaGeomOffsLon, -5, 0).lat;
+		var y2 = getZoomedOffsetFromMeters(instance.row, areaGeomOffsLon, 5, 0).lat;
 		addWay(xml, [
 			{lat: y1, lon: x1},
 			{lat: y2, lon: x1},
@@ -121,7 +130,7 @@ String.prototype.hashCode = function() {
 };
 
 var nextRow = function() {
-	/* global */ currentRow = getOffsetFromMeters(currentRow, cfg.offsLon, cfg.rowSpacing * -1, 0).lat;
+	/* global */ instance.row = getZoomedOffsetFromMeters(instance.row, instance.lon, cfg.rowSpacing * -1, 0).lat;
 };
 
 /**
@@ -142,6 +151,11 @@ var getOffsetFromMeters = function(lat, lon, dnorth, deast) {
 	};
 };
 
+var getZoomedOffsetFromMeters = function(lat, lon, dnorth, deast) {
+	/* global */ instance;
+	return getOffsetFromMeters(lat, lon, dnorth * instance.scale, deast * instance.scale);
+};
+
 /**
  * generally used geo measurement function
  * src: http://stackoverflow.com/a/11172685/211514
@@ -158,26 +172,39 @@ var measure = function(lat1, lon1, lat2, lon2){
     return d * 1000; // meters
 };
 
-var xml = builder.create('osm', {version: '1.0', encoding: 'UTF-8'});
-xml.att('version', '0.6').att('generator', 'k127/osm-legend');
-// TODO add <bounds minlat="54.0889580" minlon="12.2487570" maxlat="54.0913900" maxlon="12.2524800"/>
+var main = function() {
+	var xml = builder.create('osm', {version: '1.0', encoding: 'UTF-8'});
+	xml.att('version', '0.6').att('generator', 'k127/osm-legend');
+	// TODO add <bounds minlat="54.0889580" minlon="12.2487570" maxlat="54.0913900" maxlon="12.2524800"/>
 
-for (var i in mapFeatures.categories) {
-	var category = mapFeatures.categories[i];
-	debug(". category:", category.name);  // TODO only if verbose
-	for (var j in category.sections) {
-		var section = category.sections[j];
-		debug(".. section:", section.name);  // TODO only if verbose
-		var tags = {category: category.name};
-		if (section.name !== "") tags.section = section.name;
-		addLabel(xml, tags);
+	for (var z = 10; z <= 15; z++) {
+		instance.zoom = z;
+		instance.scale = 10000 / Math.pow(2, instance.zoom);  // TODO adjust
+		instance.row = cfg.offsLat;  // row [meters], will be decreased by 10m for each row
+		instance.lon = getZoomedOffsetFromMeters(instance.row, cfg.offsLon, 0, 400).lon;
+		xml.com('zoom: ' + instance.zoom + ' scale: ' + instance.scale + ' lon: ' + instance.lon);
+		debug(". zoom level:", instance.zoom);
+		addLabel(xml, {zoom: instance.zoom});
 		nextRow();
-		for (var k in section.items) {
-			var item  = section.items[k];
-			debug("... item:", item.tags);  		// TODO only if verbose
-			addRow(xml, item.types, item.tags);
+		for (var i in mapFeatures.categories) {
+			var category = mapFeatures.categories[i];
+			debug(".. category:", category.name);  // TODO only if verbose
+			for (var j in category.sections) {
+				var section = category.sections[j];
+				debug("... section:", section.name);  // TODO only if verbose
+				var tags = {category: category.name};
+				if (section.name !== "") tags.section = section.name;
+				addLabel(xml, tags);
+				nextRow();
+				for (var k in section.items) {
+					var item  = section.items[k];
+					debug(".... item:", item.tags);  		// TODO only if verbose
+					addRow(xml, item.types, item.tags);
+				}
+			}
 		}
 	}
+	console.log(xml.end({ pretty: true}));
 }
 
-console.log(xml.end({ pretty: true}));
+main();

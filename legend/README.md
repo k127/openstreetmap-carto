@@ -5,7 +5,8 @@
 * Map legend should display all osm wiki features…
 * …for each zoom level, …
 * …`map_features.json` should be automatically created from wiki page.
-* The map legend should also contain some complex situations (which have yet to be suggested)
+* Output format should be suitable to be imported as `openstreetmap-carto` suggests.
+* Nice to have: the map legend should contain some complex situations (which have yet to be suggested)
 
 
 ## Prerequisities
